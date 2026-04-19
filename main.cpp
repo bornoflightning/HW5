@@ -2,7 +2,7 @@
 /*
 Victor Escarcega
 CT301 Spring Semester
-Homework 1
+
 */
 
 
@@ -14,12 +14,16 @@ Homework 1
 #include <sstream>
 
 #include "GameOfLife.h"
+#include "BasicGOL.h"
+#include "TestingHelper.h"
 
 
 using namespace std;
 
 
 int main(int argc, char* argv[]) {
+
+
 
 	//argc tells us how many arguments exist
 	//argv tells us the actual values
@@ -48,20 +52,51 @@ int main(int argc, char* argv[]) {
 		intPrintIntervals = stoi(argv[3]);
 	}
 
+	//Testing
+	TestingHelper parser(argv[1]);
 
-	GameOfLife Game(argv[1]);
-	Game.PrintGame();
+	int height = parser.returnHeight();
+	int width = parser.returnWidth();
+	string board = parser.returnBoard();
+
+	BasicGOL original(width, height, board);
+
+	cout << "Orginal Before clone" << endl;
+	original.PrintGame();
 	cout << "\n";
 
-	for (int intCurrentGeneration = 1; intCurrentGeneration <= intTotalGenerations; ++intCurrentGeneration) {
-		Game.NextGen();
+	auto clonedGame = original.clone();
 
-		//match the print invterval
-		if (intCurrentGeneration % intPrintIntervals == 0) {
-			Game.PrintGame();
-			cout << "\n";
-		}
-	}
+	cout << "Clone right after clone():\n";
+	clonedGame->PrintGame();
+	cout << "\n";
+
+	//Here we advance the clone for testing
+	clonedGame->NextGen();
+
+	cout << "Original after clone advanced: \n";
+	original.PrintGame();
+	cout << "\n";
+
+	cout << "Clone after using NextGen(): \n";
+	clonedGame->PrintGame();
+	cout << endl;
+
+
+
+	//GameOfLife Game(argv[1]);
+	//Game.PrintGame();
+	//cout << "\n";
+
+	//for (int intCurrentGeneration = 1; intCurrentGeneration <= intTotalGenerations; ++intCurrentGeneration) {
+	//	Game.NextGen();
+
+	//	//match the print invterval
+	//	if (intCurrentGeneration % intPrintIntervals == 0) {
+	//		Game.PrintGame();
+	//		cout << "\n";
+	//	}
+	//}
 
 
 return 0;

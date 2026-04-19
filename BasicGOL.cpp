@@ -5,7 +5,7 @@
 #include "BasicGOL.h"
 #include "GameOfLife.h"
 
-
+using namespace std;
 
 //constructor using GameOfLife inheritance
 BasicGOL::BasicGOL(int width, int height, std::string gameBoard)
@@ -27,6 +27,7 @@ void BasicGOL::NextGen() {
 
 			//Rules of the game
 			int nextValue = 0;
+
 			if (current == 1) {
 				if (liveNeighbors == 2 || liveNeighbors == 3) {
 					nextValue = 1;
@@ -52,6 +53,15 @@ void BasicGOL::NextGen() {
 	++currentGeneration;
 
 }  //end nextGen() function
+
+//Clone
+shared_ptr<GameOfLife> BasicGOL::clone() const {
+	return make_shared<BasicGOL>(*this);
+}
+
+shared_ptr<GameOfLife> makeStandard(int width, int height, string gameBoard) {
+	return make_shared <BasicGOL>(width, height, gameBoard);
+}
 
 
 
