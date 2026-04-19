@@ -97,30 +97,30 @@ GameOfLife::GameOfLife(int width, int height, const string& gameString)
 
 //CONTRUCTOR Copy
 
-GameOfLife::GameOfLife(const GameOfLife& other)
-	: height(other.height),
-	width(other.width),
-	currentGeneration(other.currentGeneration),
-	board(other.board)
-{
-
-}
+//GameOfLife::GameOfLife(const GameOfLife& other)
+//	: height(other.height),
+//	width(other.width),
+//	currentGeneration(other.currentGeneration),
+//	board(other.board)
+//{
+//
+//}
 
 //OPERATOR
-GameOfLife& GameOfLife::operator=(const GameOfLife& other)
-{
-	if (this == &other) {
-		return *this;
-	}
-
-	height = other.height;
-	width = other.width;	
-	currentGeneration = other.currentGeneration;
-	board = other.board;
-
-	return *this;
-
-}
+//GameOfLife& GameOfLife::operator=(const GameOfLife& other)
+//{
+//	if (this == &other) {
+//		return *this;
+//	}
+//
+//	height = other.height;
+//	width = other.width;	
+//	currentGeneration = other.currentGeneration;
+//	board = other.board;
+//
+//	return *this;
+//
+//}
 
 
 //PRINTGAME
@@ -173,6 +173,9 @@ int GameOfLife::countLiveNeighbors(int row, int col) const {  //we make it a con
 
 }   // end countLiveNeighbors
 
+//Next Gen Old Logic
+/* removing this logic and adding to each individual separate function with its own
+* version of the logic for NextGen
 void GameOfLife::NextGen() {
 
 	vector<int> temporaryBoard(width * height);
@@ -212,6 +215,7 @@ void GameOfLife::NextGen() {
 	++currentGeneration;
 
 }   //end nextGen() function
+*/
 
 void GameOfLife::NextNGen(int n) {
 	// do nothign if it equals 0
@@ -262,9 +266,9 @@ GameOfLife& GameOfLife::operator+=(int gens) {
 }
 
 // We return a copy to a local object
-GameOfLife GameOfLife::operator+(int gens) const {
-	GameOfLife copy(*this);
-	copy += gens;
+shared_ptr<GameOfLife> GameOfLife::operator+(int gens) const {
+	auto copy = clone();
+	copy->NextNGen(gens);
 	return copy;
 }
 
