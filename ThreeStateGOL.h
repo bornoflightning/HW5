@@ -11,8 +11,8 @@ public:
 
 	void NextGen() override;
 
-	std::shared_ptr<GameOfLife> const override;
+	std::shared_ptr<GameOfLife> clone() const override;
 };
 
 //Factory Function 
-std::shared_ptr<GameOfLife> makeTrheeState(int width, int height, std::string gameBoard);
+std::shared_ptr<GameOfLife> makeThreeState(int width, int height, std::string gameBoard);
