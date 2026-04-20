@@ -18,6 +18,7 @@ CT301 Spring Semester
 #include "TestingHelper.h"
 #include "ThreeStateGOL.h"
 #include "ThreeTest.h"
+#include "WrapAroundGOL.h"
 
 
 using namespace std;
@@ -54,38 +55,19 @@ int main(int argc, char* argv[]) {
 		intPrintIntervals = stoi(argv[3]);
 	}
 
-	//Testing
-	ThreeTest parser(argv[1]);
+	cout << "\nWrapAround Test:\n";
 
-	int height = parser.returnHeight();
-	int width = parser.returnWidth();
-	string board = parser.returnBoard();
+	WrapAroundGOL wrapTest(5, 5, "OXXXXOXXXXOXXXXXXXXXXXXXX");
 
-	cout << "This is the board" << board << endl;
+	cout << "Initial:\n";
+	wrapTest.PrintGame();
+	cout << "\n";
 
-	ThreeStateGOL test(width, height, board);
+	wrapTest.NextGen();
 
-	cout << "Initial board: \n";
-	test.PrintGame();
-	cout << endl;
-
-	auto clone = test.clone();
-
-	clone->NextGen();
-
-	cout << "Original after clone on Three State test" << endl;
-	test.PrintGame();
-
-	cout << "Clone after Next:\n";
-	clone->PrintGame();
-
-	auto future = test + 2;
-
-	cout << "Original:\n";
-	test.PrintGame();
-
-	cout << "Future + 2 generations:\n";
-	future->PrintGame();
+	cout << "After 1 generation:\n";
+	wrapTest.PrintGame();
+	cout << "\n";
 
 	
 
