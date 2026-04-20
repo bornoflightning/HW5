@@ -17,6 +17,7 @@ CT301 Spring Semester
 #include "BasicGOL.h"
 #include "TestingHelper.h"
 #include "ThreeStateGOL.h"
+#include "ThreeTest.h"
 
 
 using namespace std;
@@ -54,37 +55,13 @@ int main(int argc, char* argv[]) {
 	}
 
 	//Testing
-	TestingHelper parser(argv[1]);
+	ThreeTest parser(argv[1]);
 
 	int height = parser.returnHeight();
 	int width = parser.returnWidth();
 	string board = parser.returnBoard();
 
-	BasicGOL original(width, height, board);
-
-	cout << "Orginal Before clone" << endl;
-	original.PrintGame();
-	cout << "\n";
-
-	auto clonedGame = original.clone();
-
-	cout << "Clone right after clone():\n";
-	clonedGame->PrintGame();
-	cout << "\n";
-
-	//Here we advance the clone for testing
-	clonedGame->NextGen();
-
-	cout << "Original after clone advanced: \n";
-	original.PrintGame();
-	cout << "\n";
-
-	cout << "Clone after using NextGen(): \n";
-	clonedGame->PrintGame();
-	cout << endl;
-
-
-	cout << "Begin Three State Test" << endl;
+	cout << "This is the board" << board << endl;
 
 	ThreeStateGOL test(width, height, board);
 
@@ -101,6 +78,14 @@ int main(int argc, char* argv[]) {
 
 	cout << "Clone after Next:\n";
 	clone->PrintGame();
+
+	auto future = test + 2;
+
+	cout << "Original:\n";
+	test.PrintGame();
+
+	cout << "Future + 2 generations:\n";
+	future->PrintGame();
 
 	
 
