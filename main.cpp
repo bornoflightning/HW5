@@ -16,6 +16,7 @@ CT301 Spring Semester
 #include "GameOfLife.h"
 #include "BasicGOL.h"
 #include "TestingHelper.h"
+#include "ThreeStateGOL.h"
 
 
 using namespace std;
@@ -81,6 +82,27 @@ int main(int argc, char* argv[]) {
 	cout << "Clone after using NextGen(): \n";
 	clonedGame->PrintGame();
 	cout << endl;
+
+
+	cout << "Begin Three State Test" << endl;
+
+	ThreeStateGOL test(width, height, board);
+
+	cout << "Initial board: \n";
+	test.PrintGame();
+	cout << endl;
+
+	auto clone = test.clone();
+
+	clone->NextGen();
+
+	cout << "Original after clone on Three State test" << endl;
+	test.PrintGame();
+
+	cout << "Clone after Next:\n";
+	clone->PrintGame();
+
+	
 
 
 
