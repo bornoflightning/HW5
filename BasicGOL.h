@@ -4,13 +4,14 @@
 #pragma once
 
 #include <string>
-#include "GameOfLife.h"
 #include <memory>
+
+#include "GameOfLife.h"
 
 
 
 class BasicGOL : public GameOfLife {
-private:
+
 
 
 public:

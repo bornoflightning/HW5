@@ -6,7 +6,7 @@
 
 using namespace std;
 
-WrapAroundGOL::WrapAroundGOL(int width, int height, string gameBoard)
+WrapAroundGOL::WrapAroundGOL(int width, int height, std::string gameBoard)
 	: GameOfLife(width, height, gameBoard)
 {
 
@@ -70,6 +70,6 @@ shared_ptr<GameOfLife> WrapAroundGOL::clone() const{
 }
 
 //Factory
-shared_ptr<GameOfLife> makeWrapAround(int width, int height, string gameBoard) {
+shared_ptr<GameOfLife> makeWrapAround(int width, int height, std::string gameBoard) {
     return make_shared<WrapAroundGOL>(width, height, gameBoard);
 }

@@ -15,7 +15,10 @@ TestingHelper::TestingHelper(const string& filename) {
 	//
 	ifstream input(filename);
 
+
+	
 	input >> height >> width;
+
 
 	char character;
 	while (input >> character) {
@@ -25,7 +28,7 @@ TestingHelper::TestingHelper(const string& filename) {
 		else if (character == 'O') {
 			board.push_back('O');
 		}
-		else {
+		else{
 			throw invalid_argument("Invalid character in board!");
 		}
 	}

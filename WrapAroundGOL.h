@@ -17,4 +17,4 @@ public:
 	std::shared_ptr<GameOfLife> clone() const override;
 };
 
-std::shared_ptr<GameOfLife> makeWarpAround(int width, int height, std::string gameBoard);
+std::shared_ptr<GameOfLife> makeWrapAround(int width, int height, std::string gameBoard);

@@ -10,15 +10,15 @@
 using namespace std;
 
 
-ThreeStateGOL::ThreeStateGOL(int width, int height, string gameBoard)
-	:GameOfLife(width, height, string(width* height, 'X'))
+ThreeStateGOL::ThreeStateGOL(int width, int height, std::string gameBoard)
+	:GameOfLife(width, height, std::string(width* height, 'X'))
 {
 	if (width <= 0 || height <= 0) {
 		throw invalid_argument("Invalid board dimensions..");
 	}
 
 	if (gameBoard.size() != static_cast<size_t>(width * height)) {
-		throw invalid_argument("Board size needs to match dimensions..")
+		throw invalid_argument("Board size needs to match dimensions..");
 	}
 
 	for (int i = 0; i < width * height; ++i) {
@@ -33,7 +33,7 @@ ThreeStateGOL::ThreeStateGOL(int width, int height, string gameBoard)
 			board[i] = 2;
 		}
 		else {
-			throw invalid_argument("Invalid character board!")
+			throw invalid_argument("Invalid character board!");
 		}
 	}
 
@@ -41,7 +41,7 @@ ThreeStateGOL::ThreeStateGOL(int width, int height, string gameBoard)
 
 //Three State Rules
 void ThreeStateGOL::NextGen() {
-	vector<int> temporaryBoard(width * height);
+	std::vector<int> temporaryBoard(width * height);
 
 	for (int row = 0; row < height; ++row) {
 		for (int col = 0; col < width; ++col) {
@@ -53,7 +53,7 @@ void ThreeStateGOL::NextGen() {
 
 			if (current == 1) {
 				if (liveNeighbors == 2 || liveNeighbors == 3) {
-					nextValue = 1
+					nextValue = 1;
 				}
 				else {
 					nextValue = 2;
@@ -90,11 +90,11 @@ void ThreeStateGOL::NextGen() {
 	++currentGeneration;
 }
 //Clone
-shared_ptr<GameOfLife> ThreeStateGOL::clone() const {
+std::shared_ptr<GameOfLife> ThreeStateGOL::clone() const {
 	return make_shared<ThreeStateGOL>(*this);
 }
 
 //Factory
-shared_ptr<GameOfLife> makeThreeState(int width, int height, string gameBoard) {
+std::shared_ptr<GameOfLife> makeThreeState(int width, int height, string gameBoard) {
 	return make_shared<ThreeStateGOL>(width, height, gameBoard);
 }

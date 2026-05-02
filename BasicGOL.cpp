@@ -1,6 +1,7 @@
 
 
 #include <vector>
+#include <memory>
 
 #include "BasicGOL.h"
 #include "GameOfLife.h"
@@ -55,12 +56,12 @@ void BasicGOL::NextGen() {
 }  //end nextGen() function
 
 //Clone
-shared_ptr<GameOfLife> BasicGOL::clone() const {
+std::shared_ptr<GameOfLife> BasicGOL::clone() const {
 	return make_shared<BasicGOL>(*this);
 }
 
-shared_ptr<GameOfLife> makeStandard(int width, int height, string gameBoard) {
-	return make_shared <BasicGOL>(width, height, gameBoard);
+std::shared_ptr<GameOfLife> makeStandard(int width, int height, std::string gameBoard) {
+	return make_shared<BasicGOL>(width, height, gameBoard);
 }
 
 
